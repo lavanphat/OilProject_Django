@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Trang Chủ</title>
+{% endblock %}
+{% block content %}
+    <!-- end:: Header -->
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+
+        <!-- begin:: Content Head -->
+        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">Thống Kê </h3>
+                <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+                <div class="kt-input-icon kt-input-icon--right kt-subheader__search kt-hidden">
+                    <input type="text" class="form-control" placeholder="Search order..." id="generalSearch">
+                    <span class="kt-input-icon__icon kt-input-icon__icon--right">
+										<span><i class="flaticon2-search-1"></i></span>
+									</span>
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar">
+                <div class="kt-subheader__wrapper">
+                    <a class="btn kt-subheader__btn-primary" id="today" data-url-product="{% url 'product-day' %}"
+                       data-url-service="{% url 'service-day' %}" data-url-money="{% url 'money-day' %}"
+                       data-url-bill="{% url 'bill-day' %}" style="font-size: medium">Hôm Nay</a>
+                    <a class="btn kt-subheader__btn-secondary" id="week" data-url-product="{% url 'product-week' %}"
+                       data-url-service="{% url 'service-week' %}" data-url-money="{% url 'money-week' %}"
+                       data-url-bill="{% url 'bill-week' %}" style="font-size: medium">Tuần</a>
+                    <a class="btn kt-subheader__btn-secondary" id="month" data-url-product="{% url 'product-month' %}"
+                       data-url-service="{% url 'service-month' %}" data-url-money="{% url 'money-month' %}"
+                       data-url-bill="{% url 'bill-month' %}" style="font-size: medium">Tháng</a>
+                    <a class="btn kt-subheader__btn-secondary" id="year" data-url-product="{% url 'product-year' %}"
+                       data-url-service="{% url 'service-year' %}" data-url-money="{% url 'money-year' %}"
+                       data-url-bill="{% url 'bill-year' %}" style="font-size: medium">Năm</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- end:: Content Head -->
+
+        <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head kt-portlet__head--lg">
+                    <div class="kt-portlet__head-label">
+										<span class="kt-portlet__head-icon">
+											<i class="kt-font-brand flaticon2-line-chart"></i>
+										</span>
+                        <h3 class="kt-portlet__head-title">
+                            Thống Kê
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <div class="kt-portlet__head-wrapper">
+                            <div class="kt-portlet__head-actions">
+                                <input type="text" class="form-control" id="kt_datepicker_1_modal" readonly
+                                       placeholder="Chọn ngày...."/>
+
+                            </div>
+                            <button class="btn btn-outline-primary ml-2" data-url-bill="{% url 'bill-day-custom' %}"
+                                    data-url-product="{% url 'product-day-custom' %}"
+                                    data-url-service="{% url 'service-day-custom' %}"
+                                    data-url-money="{% url 'money-day-custom' %}"
+                                    id="filter-date"><i class="fas fa-filter"></i>Lọc
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kt-portlet__body">
+
+                    <!--begin: Dashboard -->
+                    <div class="container">
+                        <h1 id="title" class="text-center">THỐNG KÊ THEO NGÀY</h1>
+                        <div class="row ">
+                            <div class="col-md-12">
+                                <canvas style="height: 400px" id="bill-day"></canvas>
+                            </div>
+                        </div>
+                        <div class="row py-5">
+                            <div class="col-md-12">
+                                <canvas style="height: 400px" id="product-day"></canvas>
+                            </div>
+                        </div>
+                        <div class="row py-5">
+                            <div class="col-md-12">
+                                <canvas style="height: 400px" id="service-day"></canvas>
+                            </div>
+                        </div>
+                        <div class="row py-5">
+                            <div class="col-md-12">
+                                <canvas style="height: 400px" id="money-day"></canvas>
+                            </div>
+                        </div>
+                        <div class="row py-5">
+                            <div class="col-md-12">
+                                <h1>Tổng doanh thu: <span style="color: #fd1361;" id="total"></span></h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--end: Dashboard -->
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
