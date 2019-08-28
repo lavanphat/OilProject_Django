@@ -18,20 +18,11 @@ class Brand(models.Model):
         verbose_name_plural = 'Thương Hiệu'
 
 
-class Category(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Tên Loại')
-    slug = models.SlugField(verbose_name='Từ Khóa Loại', unique=True, blank=True)
 
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name_plural = 'Loại Sản Phẩm'
 
 
 class Product(models.Model):
     Brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name='Thương Hiệu')
-    Category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Loại Sản Phẩm')
     title = models.CharField(max_length=255, verbose_name='Tên Sản Phẩm')
     slug = models.SlugField(verbose_name='Từ Khóa Sản Phẩm', unique=True, blank=True)
     Price_Import = models.DecimalField(verbose_name='Giá Nhập Hàng', decimal_places=0, max_digits=10)
@@ -69,7 +60,6 @@ def slug_pre_save(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance)
 
 
-pre_save.connect(slug_pre_save, sender=Category)
 pre_save.connect(slug_pre_save, sender=Brand)
 pre_save.connect(slug_pre_save, sender=Product)
 pre_save.connect(slug_pre_save, sender=Service)
