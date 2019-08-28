@@ -46,7 +46,13 @@
                 </div>
             </div>
             <div class="kt-portlet__body">
-
+            {% for foo in product_select %}
+                {% if foo.Quality < 10 %}
+                    <div class="alert alert-danger" style="font-size: medium;" role="alert">
+                    <div class="alert-text">{{ foo.title }} chỉ còn {{ foo.Quality }} sản phẩm. Sắp hết !!!</div>
+                </div>
+                {% endif %}
+            {% endfor %}
                 <!--begin: Datatable -->
                 <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_3"
                        style="font-size: medium;">
