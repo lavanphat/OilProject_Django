@@ -5,6 +5,7 @@ var KTSelect2 = function() {
         // basic
         $('#kt_select2_1, #kt_select2_1_validate,#select_service,#select-bool').select2({
             placeholder: "Chọn....",
+            // minimumResultsForSearch: -1,
             width:'100%',
         });
 

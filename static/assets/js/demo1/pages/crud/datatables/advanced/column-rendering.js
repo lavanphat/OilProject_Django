@@ -92,7 +92,7 @@ var KTDatatablesAdvancedColumnRendering = function () {
                     render: function (data, type, full, meta) {
                         var status = {
                             // True: {'title': 'Kích hoạt', 'class': 'kt-badge--brand',},
-                            False: {'title': 'Chưa kích hoạt', 'class': ' kt-badge--danger'},
+                            False: {'title': 'Hủy', 'class': ' kt-badge--danger'},
                             // 3: {'title': 'Canceled', 'class': ' kt-badge--primary'},
                             True: {'title': 'Success', 'class': ' kt-badge--success'},
                             // 5: {'title': 'Info', 'class': ' kt-badge--info'},
@@ -142,7 +142,7 @@ var KTDatatablesAdvancedColumnRendering = function () {
                     title: 'Trạng Thái',
                     render: function (data, type, full, meta) {
                         var status = {
-                            False: {'title': 'Chưa kích hoạt', 'class': ' kt-badge--danger'},
+                            False: {'title': 'Hủy', 'class': ' kt-badge--danger'},
                             True: {'title': 'Kích hoạt', 'class': ' kt-badge--success'},
                         };
                         if (typeof status[data] === 'undefined') {

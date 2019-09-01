@@ -46,13 +46,19 @@
                 </div>
             </div>
             <div class="kt-portlet__body">
-            {% for foo in product_select %}
-                {% if foo.Quality < 10 %}
-                    <div class="alert alert-danger" style="font-size: medium;" role="alert">
-                    <div class="alert-text">{{ foo.title }} chỉ còn {{ foo.Quality }} sản phẩm. Sắp hết !!!</div>
-                </div>
-                {% endif %}
-            {% endfor %}
+                {% for foo in product_select %}
+                    {% if foo.Quality < 10 and foo.Quality > 0 %}
+                        <div class="alert alert-warning" style="font-size: medium;" role="alert">
+                            <div class="alert-text">{{ foo.title }} chỉ còn {{ foo.Quality }} sản phẩm. Sắp hết !!!
+                            </div>
+                        </div>
+                    {% elif foo.Quality == 0 %}
+                        <div class="alert alert-danger" style="font-size: medium;" role="alert">
+                            <div class="alert-text">{{ foo.title }} đã hết !!!
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
                 <!--begin: Datatable -->
                 <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_3"
                        style="font-size: medium;">
@@ -124,7 +130,7 @@
         </div>
     </div>
     {#    Modal Add Bill#}
-    <div style="font-size: medium" class="modal fade bd-example-modal-lg" id="add-bill" tabindex="-1" role="dialog"
+    <div style="font-size: medium" class="modal fade bd-example-modal-lg" id="add-bill" role="dialog"
          aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -145,8 +151,10 @@
                                         <select class="form-control kt-select2 is-valid" id="kt_select2_1_validate">
                                             <option></option>
                                             {% for foo in product_select %}
-                                                <option data-price="{{ foo.Price_New }}" data-product="{{ foo.id }}"
-                                                        value="{{ foo.title }}">{{ foo.title }}</option>
+                                                {% if foo.Quality > 0 %}
+                                                    <option data-price="{{ foo.Price_New }}" data-product="{{ foo.id }}"
+                                                            value="{{ foo.title }}">{{ foo.title }}</option>
+                                                {% endif %}
                                             {% endfor %}
 
                                         </select>
@@ -187,7 +195,7 @@
         </div>
     </div>
     {#    Modal Edit Bill#}
-    <div style="font-size: medium" class="modal fade bd-example-modal-lg" id="edit-bill" tabindex="-1" role="dialog"
+    <div style="font-size: medium" class="modal fade bd-example-modal-lg" id="edit-bill" role="dialog"
          aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
